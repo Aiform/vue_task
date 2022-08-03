@@ -321,11 +321,11 @@ export default {
   display: flex;
   justify-content: center;
 }
-.el-button {
+#but .el-button {
   background: #10aeb5;
   color: #fff;
 }
-.el-button:hover {
+#but .el-button:hover {
   background: #10aeb5;
   color: #fff;
 }
