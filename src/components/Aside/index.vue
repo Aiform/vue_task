@@ -33,21 +33,21 @@
 					</el-menu-item>
 				</el-menu-item-group>  
 			</el-sub-menu> 
-			<el-menu-item index="3">
+			<el-menu-item index="3" @click="epidemicriskranking">
 				<el-icon><Histogram /></el-icon>
-				<span @click="epidemicriskranking">{{dynamicdata.among}}</span>
+				<span >{{dynamicdata.among}}</span>
 			</el-menu-item>
-			<el-menu-item index="5">
+			<el-menu-item index="5" @click="epidemicsituationinquiry">
 				<el-icon><LocationFilled /></el-icon>	
-				<span @click="epidemicsituationinquiry">{{dynamicdata.query}}</span>
+				<span >{{dynamicdata.query}}</span>
 			</el-menu-item>
-			<el-menu-item index="4">
+			<el-menu-item index="4" @click="distributionofepidemicareas">
 				<el-icon><Flag /></el-icon>
-				<span @click="distributionofepidemicareas">{{dynamicdata.reqion}}</span>
+				<span >{{dynamicdata.reqion}}</span>
 			</el-menu-item>
-			<el-menu-item index="6">
+			<el-menu-item index="6" @click="epidemictrendanalysis">
 				<el-icon><TrendCharts /></el-icon>
-				<span @click="epidemictrendanalysis">{{dynamicdata.trend}}</span>
+				<span >{{dynamicdata.trend}}</span>
 			</el-menu-item>
 		</el-menu> 
 	</div>
