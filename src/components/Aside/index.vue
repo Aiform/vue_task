@@ -54,16 +54,14 @@
 </div>
 </template>
 <script>
-	import { reactive ,ref,watchEffect ,onMounted,computed} from 'vue'
-	import { useRouter, useRoute } from 'vue-router';
+	import { reactive ,ref ,computed} from 'vue'
+	import { useRouter } from 'vue-router';
 	import { ElLoading } from 'element-plus'
 	import {useStore} from 'vuex'
 	export default {
 		name:'Aside',
 		setup(){
 			const store = useStore()
-			const activerouter = ref('')
-			const iaside = document.querySelector('.aside')
 			const isCollapse = computed(()=>{
 				return store.state.aside.isCollapse
 			})
