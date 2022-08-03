@@ -19,7 +19,7 @@ import distributionofepidemicareas from '../view/distributionofepidemicareas'
 import epidemictrendanalysis from '../view/epidemictrendanalysis'
 import personalcenter from '../view/personalcenter'
 const router =  createRouter({
-    history: createWebHistory('/base-directory/'),
+    history: createWebHistory(''),
     routes: [
       {
         path:"/",
@@ -199,4 +199,13 @@ router.beforeEach((to,from,next)=>{
       next()
     }
 })
+router.beforeEach((to, from, next) => {
+  let token = localStorage.getItem('TOKEN')//存储token
+  if(!token && to.fullPath!='/login' && to.fullPath != '/registered'){
+    next('/login')
+  }else{
+    next()
+  }
+ 
+});
 export default router

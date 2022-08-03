@@ -2,7 +2,7 @@ import axios from "axios";
 import nprogress from 'nprogress'
 import "nprogress/nprogress.css"
 const instance = axios.create({
-  baseURL: "http://localhost:3008/api",
+  baseURL: "http://124.220.165.99:3008/api",
   timeout: 5000,
   headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
 });

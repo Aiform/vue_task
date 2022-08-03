@@ -6,7 +6,7 @@
 			</div>
 			<el-divider />
 			<el-alert show-icon  title="温馨提示：本页面信息仅供参考，数据来源官方，可能存在滞后性或缺漏，具体情况以政府发布信息为准。 点击查询" type="warning" />
-			<div class="map"></div>
+			<div class="map" :key="once"></div>
 		</el-card>
 	</div>
 </template>
@@ -19,6 +19,7 @@
 			onMounted(() => {
 				nextTick(() => {
 					map();
+					once.value += 2
 				});
 			});
 			const map = ()=>{
@@ -443,7 +444,10 @@
 				let bmap = myMap.getModel().getComponent('bmap').getBMap()
      			 bmap.disableDoubleClickZoom() //阻止双击放大
   		}
-}
+  		return{
+  			once
+  		}
+	}
 }
 </script>
 <style type="text/css" scoped>

@@ -1,129 +1,132 @@
 <template>
-	<el-card class="box-card boxCard">
-		<div class="header">
-			<span>本月本县以及各乡疫情确诊对比分析图</span>
-			<el-tooltip class="box-item" effect="dark" content="指标说明"  placement="top" >
-				<el-icon :size="20" class="item"> <WarningFilled /> </el-icon>
-			</el-tooltip>
-		</div>
-		<div class="risechar"></div>
-		<div class="hr"></div>
-		<div class="footer">
-			<span>每周新增数量:123</span>
-			<span style="margin-left: 20px;">每日新增数量:13</span>
-		</div>
-	</el-card>
-
+  <el-card class="box-card boxCard">
+    <div class="header">
+      <span>本月本县以及各乡疫情确诊对比分析图</span>
+      <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="指标说明"
+        placement="top"
+      >
+        <el-icon :size="20" class="item"> <WarningFilled /> </el-icon>
+      </el-tooltip>
+    </div>
+    <div class="risechar"></div>
+    <div class="hr"></div>
+    <div class="footer">
+      <span>每周新增数量:123</span>
+      <span style="margin-left: 20px">每日新增数量:13</span>
+    </div>
+  </el-card>
 </template>
 <script scoped>
-	import {onMounted} from 'vue'
-	import * as echarts from 'echarts/core';
-	import axios from '../../../axios/instance.js'
-	export default{
-		name:'ruraldata',
-		setup(){
-			onMounted(()=>{
-				ruraldata()
-			})
-			const ruraldata = ()=>{
-				axios.post('/ruarldata').then((res)=>{
-					res.data.data.map((value,index,array)=>{
-						let  myChart =  echarts.init(document.querySelector('.risechar'));
-						const  commonColorList = ['#2ec7c9', '#b6a2de', '#5ab1ef','#ffb980','#d87a80'];
-						const	option = {
-							series: [
-							{
-								type: 'pie',
-								itemStyle: {
-									normal: {
-										color: function (params) {
-											return commonColorList[params.dataIndex]
-										}
-									}
-								},
-								emphasis: {
-									label: {
-										show: true,
-										fontSize: '20',
-										fontWeight: 'bold'
-									}
-								},
-								
-								data: [
-								{
-									value: array[0].value,
-									name: array[0].name
-								},
-								{
-									value: array[1].value,
-									name: array[1].name
-								},
-								{
-									value: array[2].value,
-									name: array[2].name
-								},
-								{
-									value: array[3].value,
-									name: array[3].name
-								},
-								{
-									value: array[4].value,
-									name: array[4].name
-								}
-								],
-								roseType: 'area'
-							}
-							]
-						};
-						option && myChart.setOption(option);
+import { onMounted } from "vue";
+import * as echarts from "echarts/core";
+import axios from "../../../axios/instance.js";
+export default {
+  name: "ruraldata",
+  setup() {
+    onMounted(() => {
+      ruraldata();
+    });
+    const ruraldata = () => {
+       return new Promise((resolve,reject) => {
+              axios.post("/ruarldata").then((res) => {
+          res.data.data.map((value, index, array) => {
+            let myChart = echarts.init(document.querySelector(".risechar"));
+            const commonColorList = [
+              "#2ec7c9",
+              "#b6a2de",
+              "#5ab1ef",
+              "#ffb980",
+              "#d87a80",
+            ];
+            const option = {
+              series: [
+                {
+                  type: "pie",
+                  itemStyle: {
+                    normal: {
+                      color: function (params) {
+                        return commonColorList[params.dataIndex];
+                      },
+                    },
+                  },
+                  emphasis: {
+                    label: {
+                      show: true,
+                      fontSize: "20",
+                      fontWeight: "bold",
+                    },
+                  },
 
-					})
-				}).catch((err)=>console.log(err))
+                  data: [
+                    {
+                      value: array[0].value,
+                      name: array[0].name,
+                    },
+                    {
+                      value: array[1].value,
+                      name: array[1].name,
+                    },
+                    {
+                      value: array[2].value,
+                      name: array[2].name,
+                    },
+                    {
+                      value: array[3].value,
+                      name: array[3].name,
+                    },
+                    {
+                      value: array[4].value,
+                      name: array[4].name,
+                    },
+                  ],
+                  roseType: "area",
+                },
+              ],
+            };
+            option && myChart.setOption(option);
+          });
+        }).catch((err) => console.log(err));
+       })
 
-
-			}
-
-		}
-
-	}
-
-
+    };
+  },
+};
 </script>
 <style type="text/css" scoped>
-	.boxCard{
-		width: 410px !important;
-		height: 250px !important;
-		margin:5px ;
-	}
-	.header{
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		align-content: stretch;
-		justify-content: space-between;
-	}
-	.header>span{
-		color: #303133;
-		font-size: 14px;
-	}
-	.item{
-		color: #97a8be !important;
-		float: right;
-		padding: 3px 0;
-	}
-	.risechar{
-		width:100%;
-		height:160px;
-	}
-	.hr{
-		border-top: 1px solid #e8e8e8;
-		margin: 0 0 10px 0;
-	}
-	.footer>span{
-		font-size: 14px;
-		line-height: 22px;
-	}
-
-
-
+.boxCard {
+  width: 410px !important;
+  height: 250px !important;
+  margin: 5px;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: space-between;
+}
+.header > span {
+  color: #303133;
+  font-size: 14px;
+}
+.item {
+  color: #97a8be !important;
+  float: right;
+  padding: 3px 0;
+}
+.risechar {
+  width: 100%;
+  height: 160px;
+}
+.hr {
+  border-top: 1px solid #e8e8e8;
+  margin: 0 0 10px 0;
+}
+.footer > span {
+  font-size: 14px;
+  line-height: 22px;
+}
 </style>

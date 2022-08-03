@@ -87,7 +87,7 @@
 					v-model="file"
 					v-if="isshow"
 				    class="upload-demo"
-				    action="http://localhost:3008/uploads/"
+				    action="http://124.220.165.99:3008/uploads/"
 				    :limit="1"
 				    @change="getFile($event)"
 				  >
@@ -109,7 +109,7 @@
 					v-model="fileTwo"
 					v-if="isshow"
 				    class="upload-demo"
-				    action="http://localhost:3008/uploads/"
+				    action="http://124.220.165.99:3008/uploads/"
 				    :limit="1"
 				    @change="getFileTwo($event)"
 				  >
@@ -131,7 +131,7 @@
 					v-model="fileThree"
 					v-if="isshow"
 				    class="upload-demo"
-				    action="http://localhost:3008/uploads/"
+				    action="http://124.220.165.99:3008/uploads/"
 				    :limit="1"
 				    @change="getFileThree($event)"
 				  >
@@ -218,9 +218,25 @@
 				  }, 2000)
 			}
 			// 修改功能
+			const passport = /^([a-zA-z]|[0-9]){5,17}$/
+			const contact = /^((13[0-9])|(17[0-1,6-8])|(15[^4,\\D])|(18[0-9]))\d{8}$/
+			const textempty = /\S/
 			const Modification  = ()=>{
 						overseaspreviewdata.value.map((value)=>{
-							const data = qs.stringify({
+									if(!textempty.test(value.name,value.time,value.area,value.fight,value.city,value.borune,value.addressdetaics)){
+											ElMessage.error('不能为空')
+										}else if(!contact.test(value.contact)){
+											ElMessage.error('联系方式格式有误')
+										}else if(!passport.test(value.passport)){
+											ElMessage.error('护照号码格式有误')
+										}else{
+											ModifAxios(value)
+										}
+
+						})
+			}
+			const ModifAxios = (value)=>{
+				const data = qs.stringify({
 								id:value.id,
 								name:value.name,
 								passport:value.passport,
@@ -249,8 +265,6 @@
 								}
 								
 							})
-
-						})
 			}
 			const outiseld = (index,row)=>{
 				 overseaspreview(row.id)

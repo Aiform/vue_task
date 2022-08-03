@@ -91,7 +91,7 @@ export default{
 		const contact = /^((13[0-9])|(17[0-1,6-8])|(15[^4,\\D])|(18[0-9]))\d{8}$/
 		const textempty = /\S/
 		const confirmaddition = (event)=>{
-				if(!textempty.test(message.name,file.value,file1.value,file2.value)){
+				if(!textempty.test(message.name,file.value,file1.value,file2.value,message.time,message.area,message.fight,message.city,message.borune,message.addressdetaics)){
 					ElMessage.error('不能为空')
 				}else if(!contact.test(message.contact)){
 					ElMessage.error('联系方式格式有误')

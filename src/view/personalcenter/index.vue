@@ -13,7 +13,7 @@
 					<el-upload
 					v-model="fileList"
 					class="upload-demo"
-					action="http://localhost:3008/uploads/"
+					action="http://124.220.165.99:3008/uploads/"
 					multiple
 					:limit="3"
 					@change="getFile($event)"
