@@ -38,7 +38,7 @@
 			</el-menu-item>
 			<el-menu-item index="5" @click="epidemicsituationinquiry">
 				<el-icon><LocationFilled /></el-icon>	
-				<span >{{dynamicdata.query}}</span>
+				<span>{{dynamicdata.query}}</span>
 			</el-menu-item>
 			<el-menu-item index="4" @click="distributionofepidemicareas">
 				<el-icon><Flag /></el-icon>
