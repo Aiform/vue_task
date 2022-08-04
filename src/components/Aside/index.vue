@@ -2,7 +2,6 @@
 	<div class="aside">
 		<div>
 			<el-menu 
-			
 			class="el-menu-vertical-demo" 
 			:collapse="isCollapse"
 			>
