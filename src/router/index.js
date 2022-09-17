@@ -17,7 +17,6 @@ import newaddress from '../view/epidemicriskranking/newaddress'
 import epidemicsituationinquiry from '../view/epidemicsituationinquiry'
 import distributionofepidemicareas from '../view/distributionofepidemicareas'
 import epidemictrendanalysis from '../view/epidemictrendanalysis'
-import personalcenter from '../view/personalcenter'
 const router = createRouter({
   history: createWebHistory(''),
   routes: [
@@ -160,15 +159,7 @@ const router = createRouter({
             title: "疫情趋势分析"
           }
         },
-        {
-
-          path: "/personalcenter",
-          name: "personalcenter",
-          component: personalcenter,
-          meta: {
-            title: "个人中心"
-          }
-        },
+       
       ]
     },
     {

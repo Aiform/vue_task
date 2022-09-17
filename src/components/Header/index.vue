@@ -13,7 +13,7 @@
 						</el-breadcrumb-item>
 					</el-breadcrumb>
 				</div>
-				<div class="inforadmin">
+			<div class="inforadmin">
 					<div class="FullScreen">
 						<el-tooltip
 						class="box-item"
@@ -28,12 +28,12 @@
 				<div>
 					<el-dropdown >
 						<span class="el-dropdown-link">
-							<el-avatar :size="50"    :src="pic"/>
+							<el-avatar :size="50"    src="http://124.220.165.99:3008/uploads/2022.png"/>
 						</span>
 						<template #dropdown>
 							<el-dropdown-menu>
 								<el-dropdown-item @click="homepagedata">首页</el-dropdown-item>
-								<el-dropdown-item @click="personalcenter">个人中心</el-dropdown-item>
+							
 								<el-dropdown-item @click="esclogo">退出登录</el-dropdown-item>
 							</el-dropdown-menu>
 						</template>
@@ -46,7 +46,7 @@
 </div>
 </template>
 <script>
-	import { computed ,onMounted,ref,onBeforeUnmount} from 'vue'
+	import { computed } from 'vue'
 	import { useRouter , useRoute} from 'vue-router'
 	import screenfull from "screenfull"
 	import {useStore} from 'vuex'
@@ -57,17 +57,9 @@
 			const router = useRouter()
 			const route = useRoute()
 			const store = useStore()
-			const pic = ref()
-			const time = ref(null)
-			onMounted(()=>{
-				time.value = setInterval(()=>{
-					pic.value = localStorage.getItem('USERPIC')
-				},50)
-			})
 			const list = computed(() => {
 				return route.matched
 			})
-
 			const toggleFullscreen = ()=>{
 				  if (screenfull.isEnabled) {
 			        screenfull.toggle()
@@ -101,15 +93,6 @@
 						message: '退出成功',
 					})
 					localStorage.removeItem('TOKEN')
-					localStorage.removeItem('PHONE')
-					localStorage.removeItem('EMAIL')
-					localStorage.removeItem('NAME')
-					localStorage.removeItem('ROLE')
-					localStorage.removeItem('ADDRESS')
-					localStorage.removeItem('SEX')
-					localStorage.removeItem('REMARKS')
-					localStorage.removeItem('USERPIC')
-					localStorage.removeItem('ADMINNAME')
 					localStorage.removeItem('ID')
   					router.push('/login')
 				})
@@ -121,20 +104,15 @@
 				})
   					
 			}
-			const personalcenter =()=>{
-				router.push('/personalcenter')
-			}
-			onBeforeUnmount(()=>{
-				clearInterval(time.value)
-			})
+		
+			
 			return{
 				list,
 				toggleFullscreen,
 				isCollapse,
 				homepagedata,
 				esclogo,
-				personalcenter,
-				pic
+			
 				
 			}
 

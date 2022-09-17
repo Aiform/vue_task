@@ -28,22 +28,12 @@
 </template>
 <script>
 import { ref } from "vue";
-import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import { ElMessage, ElMessageBox } from "element-plus";
 import axios from "../../axios/instance.js";
 import {
   setToken,
-  userPic,
-  adminName,
-  Phone,
-  Email,
-  Name,
-  Role,
-  Address,
-  Sex,
-  Remarks,
-  Id,
+
 } from "@/token";
 import qs from "qs";
 export default {
@@ -51,7 +41,6 @@ export default {
   setup() {
     const username = ref("");
     const password = ref("");
-    const inforData = ref({});
     const router = useRouter();
 
     // 账号的正则
@@ -73,16 +62,7 @@ export default {
           .then((result) => {
             if (result.data.status == 0) {
               setToken(result.data.token);
-              userPic(result.data.data.user_pic);
-              adminName(result.data.data.adminname);
-              Phone(result.data.data.phone);
-              Email(result.data.data.email);
-              Name(result.data.data.name);
-              Role(result.data.data.role);
-              Address(result.data.data.address);
-              Sex(result.data.data.sex);
-              Remarks(result.data.data.remarks);
-              Id(result.data.data.id);
+             
               router.replace("/home");
               ElMessage({
                 type: "success",
